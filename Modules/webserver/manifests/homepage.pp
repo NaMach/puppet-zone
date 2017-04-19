@@ -1,7 +1,9 @@
-class webserver::homepage inherits webserver::params {
-    file { '/var/www/html/index.html' :
+class webserver::homepage ($file_value="index", $homepage_location="/var/www/html/index.html") inherits webserver::params {
+    file { $homepage_location :
         ensure => file,
         #source => 'puppet:///modules/class/file.txt';
-        content => file('webserver/index.html'),
+        content => file("webserver/${file_value}.html"),
+        notify => Service["${webserver::params::http_service}"], 
+        
     }
 }

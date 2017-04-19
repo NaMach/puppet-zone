@@ -48,7 +48,11 @@ class webserver {
 
   include webserver::service
 
-  include webserver::homepage
-  
+  #include webserver::homepage
+  class { 'webserver::homepage':
+    file_value => 'home',
+    homepage_location => '/var/www/html/home.html',
 
+  }
+  
 }
