@@ -1,13 +1,8 @@
 # Clawebserver::install
 #
 #
-class webserver::install {
-    $http_service = $facts['os']['family'] ? {
-        'RedHat' => 'httpd',
-        'Debian' => 'apache2',
-    }
-
-    package { $http_service:
+class webserver::install inherits webserver::params {
+    package { $webserver::params::http_service:
         ensure => installed,        
     }
 

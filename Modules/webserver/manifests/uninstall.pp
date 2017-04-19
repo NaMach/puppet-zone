@@ -1,13 +1,8 @@
 # Clawebserver::uninstall
 #
 #
-class webserver::uninstall {
-    $http_service = $facts['os']['family'] ? {
-        'RedHat' => 'httpd',
-        'Debian' => 'apache2',
-    }
-
-    service { $http_service:
+class webserver::uninstall inherits webserver::params {
+    service { $webserver::params::http_service:
         ensure => purged,
     }
     

@@ -47,6 +47,8 @@ class webserver {
   include webserver::install
 
   include webserver::service
+
+  include webserver::homepage
   
 
 }
