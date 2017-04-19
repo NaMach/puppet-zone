@@ -43,19 +43,10 @@
 # Copyright 2017 Your name here, unless otherwise noted.
 #
 class webserver {
-    # using selector
-    $http_service = $facts['os']['family'] ? {
-        'RedHat' => 'httpd',
-        'Debian' => 'apache2',
-    }
+  
+  include webserver::install
 
-    package { $http_service:
-        ensure => installed,        
-    }
+  include webserver::service
+  
 
-    service { $http_service:
-        ensure     => running,
-        enable     => true,
-    }
-    
 }
